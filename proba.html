@@ -90,29 +90,25 @@
     </div>
 
     <script>
-      
         var today = new Date();
-        var dayAfterTomorrow = new Date();
-        dayAfterTomorrow.setDate(today.getDate() + 2); 
-        dayAfterTomorrow.setHours(11, 0, 0, 0); 
-        var countDownDate = dayAfterTomorrow.getTime();
+        var targetDate = new Date('2024-08-21T11:00:00'); 
+        var countDownDate = targetDate.getTime();
 
-      
         var x = setInterval(function() {
-
-            
             var now = new Date().getTime();
-
             var distance = countDownDate - now;
 
-           
             var days = Math.floor(distance / (1000 * 60 * 60 * 24));
             var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-       
             document.getElementById("demo").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("demo").innerHTML = "Ekspirisalo";
+            }
         }, 1000);
     </script>
 </body>
